@@ -5,8 +5,6 @@ This is a digital events management desk built for bookstore floor staff (Ticket
 ## Live Website
 [Open Live Website](https://independent-bookstore-events.vercel.app)
 
-## GitHub Repository
-[GitHub Repository](https://github.com/harsh-vardhan-tech/independent-bookstore-events)
 
 ## Technologies Used
 - HTML5 (Semantic structure)
