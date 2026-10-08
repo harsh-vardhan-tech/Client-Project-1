@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Independent Bookstore Events Page</title>
+  <meta name="description" content="Digital staff tool for browsing, searching, and managing upcoming bookstore events." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 5.5c2.2-1 4.8-1 7 0v13c-2.2-1-4.8-1-7 0v-13z"></path>
+          <path d="M21 5.5c-2.2-1-4.8-1-7 0v13c2.2-1 4.8-1 7 0v-13z"></path>
+          <path d="M10 5.5v13"></path>
+          <path d="M14 5.5v13"></path>
+        </svg>
+        <h1 class="brand-name">Independent Bookstore Events Page</h1>
+      </div>
+      <p class="header-date" id="header-date"></p>
+    </div>
+  </header>
+
+  <main id="main-content" class="container">
+    <section class="toolbar" aria-label="Event controls">
+      <form class="search-form" role="search" id="search-form">
+        <label for="search-input" class="field-label">Search events</label>
+        <div class="search-input-wrap">
+          <input
+            type="search"
+            id="search-input"
+            name="search"
+            aria-label="Search events"
+            placeholder="Search by title, category, location, or description"
+            autocomplete="off"
+          />
+          <button type="button" id="clear-search-btn" class="search-clear-btn" aria-label="Clear search query" hidden>&times;</button>
+        </div>
+      </form>
+      <button type="button" id="toggle-add-event" class="btn btn-primary" aria-expanded="false" aria-controls="add-event-section" aria-label="Add new event">
+        <span aria-hidden="true">+</span> Add Event
+      </button>
+    </section>
+
+    <section id="add-event-section" class="add-event-section" hidden aria-labelledby="form-heading">
+      <h2 class="section-title" id="form-heading">New Event</h2>
+      <form id="event-form" novalidate>
+        <input type="hidden" id="event-id" name="id" />
+        <div class="form-grid">
+          <div class="field">
+            <label for="event-title">Event title <span class="required" aria-hidden="true">*</span></label>
+            <input type="text" id="event-title" name="title" aria-label="Event title" aria-describedby="event-title-error" aria-required="true" />
+            <p class="field-error" id="event-title-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="event-category">Category <span class="required" aria-hidden="true">*</span></label>
+            <select id="event-category" name="category" aria-label="Category" aria-describedby="event-category-error" aria-required="true">
+              <option value="">Choose a category</option>
+              <option value="Author Reading">Author Reading</option>
+              <option value="Book Club">Book Club</option>
+              <option value="Story Time">Story Time</option>
+              <option value="Workshop">Workshop</option>
+              <option value="Open Mic">Open Mic</option>
+              <option value="Other">Other</option>
+            </select>
+            <p class="field-error" id="event-category-error" role="alert"></p>
+          </div>
+
+          <div class="field" id="other-category-wrap" hidden>
+            <label for="event-other-category">Specify Category <span class="required" aria-hidden="true">*</span></label>
+            <input type="text" id="event-other-category" name="otherCategory" aria-label="Specify custom category" placeholder="e.g. Poetry Slam" aria-describedby="event-other-category-error" />
+            <p class="field-error" id="event-other-category-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="event-location">Location</label>
+            <input type="text" id="event-location" name="location" aria-label="Location" placeholder="e.g. Main Reading Hall" aria-describedby="event-location-error" />
+            <p class="field-error" id="event-location-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="event-date">Date <span class="required" aria-hidden="true">*</span></label>
+            <input type="date" id="event-date" name="date" aria-label="Date" aria-describedby="event-date-error" aria-required="true" />
+            <p class="field-error" id="event-date-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="event-time">Time <span class="required" aria-hidden="true">*</span></label>
+            <input type="time" id="event-time" name="time" aria-label="Time" aria-describedby="event-time-error" aria-required="true" />
+            <p class="field-error" id="event-time-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="event-capacity">Max attendees</label>
+            <input type="number" id="event-capacity" name="capacity" min="1" step="1" aria-label="Max attendees" placeholder="e.g. 40" aria-describedby="event-capacity-error" />
+            <p class="field-error" id="event-capacity-error" role="alert"></p>
+          </div>
+
+          <div class="field field-wide">
+            <label for="event-description">Description <span class="required" aria-hidden="true">*</span></label>
+            <textarea id="event-description" name="description" rows="3" aria-label="Description" aria-required="true" aria-describedby="event-description-error"></textarea>
+            <p class="field-error" id="event-description-error" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="save-event-btn" aria-label="Save Event">Save Event</button>
+          <button type="button" id="cancel-add-event" class="btn btn-ghost" aria-label="Cancel and close form">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="events-section" aria-label="Upcoming events">
+      <div class="events-section-header">
+        <h2 class="section-title">Upcoming Events</h2>
+        <p class="events-count" id="events-count" aria-live="polite"></p>
+      </div>
+
+      <div id="loading-indicator" class="loading-indicator" role="status" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <span id="loading-text">Loading events&hellip;</span>
+      </div>
+
+      <p id="empty-state" class="empty-state" role="status" aria-live="polite" hidden></p>
+
+      <ul id="events-list" class="events-grid" role="list" aria-label="Upcoming events list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <div id="confirm-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="confirm-modal-title" class="modal-title">Delete Event</h3>
+        <button type="button" id="confirm-modal-close" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <p id="confirm-modal-text" class="modal-body-text">Are you sure you want to permanently remove this event from the bookstore schedule?</p>
+      <div class="modal-actions">
+        <button type="button" id="confirm-modal-yes" class="btn btn-danger" aria-label="Confirm permanent deletion">Yes, Delete Event</button>
+        <button type="button" id="confirm-modal-no" class="btn btn-ghost" aria-label="Keep event">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Independent Bookstore Events Page &bull; Floor Staff Desk</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
