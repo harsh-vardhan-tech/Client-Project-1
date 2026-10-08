@@ -3,7 +3,7 @@
 This is a digital events management desk built for bookstore floor staff (Ticket: ENG-18072). It allows staff to easily view, search, add, edit, and manage upcoming bookstore events instead of using paper sheets or Excel files.
 
 ## Live Website
-[Open Live Website](https://independent-bookstore-events.vercel.app)
+[Open Live Website](https://client-project-1-omega.vercel.app/)
 
 
 ## Technologies Used
